@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>실시설계에서 중요한 체크포인트 | Yunjung Design Note</title>
+  <style>
+    :root{
+      --line:#e7ddd1; --text:#2f2a25; --soft:#6f655b; --point:#b89a79; --point-dark:#9d7f5e;
+      --shadow:0 16px 40px rgba(72,53,35,0.08); --radius:26px; --max:920px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:linear-gradient(180deg,#f9f5ef 0%,#f4eee6 100%);color:var(--text);line-height:1.8}
+    a{text-decoration:none;color:inherit}
+    .topbar{position:sticky;top:0;background:rgba(250,246,240,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .topbar-inner,.wrap{width:min(100% - 32px,var(--max));margin:0 auto}
+    .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:700}.brand span{color:var(--point-dark)}.back{color:var(--soft);font-weight:600}
+    .hero{padding:54px 0 24px}
+    .tag{display:inline-block;padding:8px 14px;border-radius:999px;background:#f3ebdf;color:var(--point-dark);font-size:.85rem;font-weight:700;margin-bottom:18px}
+    h1{margin:0 0 14px;font-size:clamp(2rem,4vw,3.4rem);line-height:1.18;letter-spacing:-.04em}
+    .intro{color:var(--soft);font-size:1.05rem;margin:0}
+    .card{background:rgba(255,253,249,.92);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);padding:34px 30px;margin:24px 0 36px}
+    h2{margin:0 0 12px;font-size:1.3rem;letter-spacing:-.03em}
+    p{margin:0 0 16px}
+    .nav-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:34px 0 60px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;font-weight:700;border:1px solid var(--line);background:#fffdf9}
+    .btn.primary{background:linear-gradient(135deg,var(--point),var(--point-dark));color:#fff;border:none}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Yunjung <span>Design Note</span></div>
+      <a class="back" href="index.html">← 홈으로</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="tag">Practice</span>
+      <h1>실시설계에서 중요한 체크포인트</h1>
+      <p class="intro">
+        좋은 컨셉은 실시설계에서 무너지지 않아야 합니다. 실무에서는 디자인과 디테일, 협업과 검토가 모두 중요합니다.
+      </p>
+    </section>
+
+    <article class="card">
+      <h2>1. 입면과 평면이 실제로 연결되는지 보기</h2>
+      <p>
+        외관 이미지는 멋있지만 평면과 맞지 않는 경우가 생각보다 많습니다. 창호 위치, 발코니 구조, 실내 공간의 사용성과 연결되는지를 함께 확인해야
+        실제 구현 가능한 설계가 됩니다.
+      </p>
+
+      <h2>2. 구조와 충돌하는 지점을 먼저 확인하기</h2>
+      <p>
+        공동주택은 구조와 건축이 촘촘하게 맞물립니다. 기둥, 벽체, 보의 위치가 디자인 요소와 충돌하지 않는지 초기에 보는 것이 중요합니다.
+        나중에 수정하려면 비용도 크고 전체 리듬이 무너지기 쉽습니다.
+      </p>
+
+      <h2>3. 설비와의 간섭을 가볍게 보면 안 됩니다</h2>
+      <p>
+        천장고, 샤프트, 배관, 실외기 공간은 실제 생활의 편의와 직결됩니다. 설계 초기에는 디자인 중심으로 보더라도, 실시 단계에서는 반드시 설비와의
+        조율을 세밀하게 해야 합니다.
+      </p>
+
+      <h2>4. 디테일은 결국 사용자의 경험으로 돌아옵니다</h2>
+      <p>
+        손잡이 높이, 마감 접합, 방수 처리, 창호 주변 마감은 도면상 작은 요소처럼 보여도 실제 완성도에는 큰 차이를 만듭니다.
+        실무에서 좋은 설계는 큰 아이디어와 작은 디테일이 동시에 안정적인 경우입니다.
+      </p>
+
+      <h2>5. 반복 검토가 품질을 만듭니다</h2>
+      <p>
+        한 번에 완벽한 도면이 나오기는 어렵습니다. 체크리스트를 만들어 반복해서 보는 습관, 관련 분야와 교차 검토하는 과정이 결국 전체 품질을 높입니다.
+      </p>
+    </article>
+
+    <div class="nav-bottom">
+      <a class="btn" href="post2.html">이전 글 보기</a>
+      <a class="btn primary" href="post4.html">다음 글 보기</a>
+    </div>
+  </main>
+</body>
+</html>

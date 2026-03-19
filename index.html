@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>윤정의 건축 노트</title>
+  <style>
+    :root {
+      --bg: #f6f1ea;
+      --bg-soft: #fbf8f4;
+      --paper: #fffdf9;
+      --line: #e7ddd1;
+      --text: #2f2a25;
+      --text-soft: #6f655b;
+      --point: #b89a79;
+      --point-dark: #9d7f5e;
+      --shadow: 0 16px 40px rgba(72, 53, 35, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.65), transparent 30%),
+        linear-gradient(180deg, #f9f5ef 0%, #f4eee6 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      border-radius: 18px;
+    }
+
+    .wrap {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(250, 246, 240, 0.78);
+      border-bottom: 1px solid rgba(231, 221, 209, 0.8);
+    }
+
+    .topbar-inner {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      color: var(--point-dark);
+    }
+
+    .nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--text-soft);
+      font-size: 0.96rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .side-card,
+    .section-card,
+    .post-card,
+    .tool-card,
+    .ad-card {
+      background: rgba(255, 253, 249, 0.88);
+      border: 1px solid rgba(231, 221, 209, 0.9);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-card {
+      padding: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #f2e7da;
+      color: var(--point-dark);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 4.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 20px 0 0;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.22s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--point), var(--point-dark));
+      color: white;
+      box-shadow: 0 10px 24px rgba(157, 127, 94, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #faf7f2;
+    }
+
+    .side-col {
+      display: grid;
+      gap: 20px;
+    }
+
+    .side-card {
+      padding: 26px;
+    }
+
+    .side-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .side-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 16px 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    section {
+      padding: 18px 0 32px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 6px 0 0;
+      color: var(--text-soft);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .post-card,
+    .tool-card,
+    .section-card {
+      padding: 24px;
+    }
+
+    .post-card .tag,
+    .tool-card .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #f3ebdf;
+      color: var(--point-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .post-card h3,
+    .tool-card h3,
+    .section-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.16rem;
+      letter-spacing: -0.02em;
+    }
+
+    .post-card p,
+    .tool-card p,
+    .section-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    .post-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-weight: 700;
+      color: var(--point-dark);
+    }
+
+    .feature-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .tool-card.large {
+      padding: 30px;
+    }
+
+    .generator-box {
+      margin-top: 22px;
+      padding: 22px;
+      background: linear-gradient(180deg, #fcfaf7 0%, #f6efe6 100%);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text);
+      font-size: 1.12rem;
+      font-weight: 600;
+    }
+
+    .tool-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .ad-card {
+      padding: 24px;
+      text-align: center;
+      border-style: dashed;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .ad-card strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .info-item {
+      padding: 16px 18px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--text-soft);
+    }
+
+    footer {
+      padding: 44px 0 60px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .footer-box {
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .feature-box,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 34px 26px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        padding: 10px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-card,
+      .side-card,
+      .section-card,
+      .post-card,
+      .tool-card,
+      .ad-card {
+        border-radius: 22px;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Yunjung <span>Design Note</span></div>
+      <nav class="nav">
+        <a href="#index.html">홈</a>
+        <a href="#posts">콘텐츠</a>
+        <a href="#tool.html">도구</a>
+        <a href="#about.html">소개</a>
+        <a href="#contact.html">연락</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Premium Architecture & Ideas</div>
+          <h1>건축 감각과 실무 아이디어를 담은<br>프리미엄 디자인 노트</h1>
+          <p>
+            공동주택 설계, 파사드 아이디어, 공간 컨셉, 디자인 자료를
+            정리하는 아카이브입니다. 실무 경험과 감각을 바탕으로
+            실제로 참고할 수 있는 정보만 담았습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#posts">콘텐츠 보기</a>
+            <a class="btn btn-secondary" href="#tool">아이디어 생성기</a>
+          </div>
+        </div>
+
+        <div class="side-col">
+          <div class="side-card">
+            <h3>사이트 방향</h3>
+            <p>
+              광고만 많은 사이트가 아니라, 신뢰감 있는 정보형 구조로
+              만들어 AdSense 승인에도 유리한 형태를 목표로 합니다.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <strong>5+</strong>
+                <span>정보 글</span>
+              </div>
+              <div class="stat">
+                <strong>1</strong>
+                <span>도구 페이지</span>
+              </div>
+              <div class="stat">
+                <strong>100%</strong>
+                <span>모바일 대응</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3>추천 수익 구조</h3>
+            <p>
+              정보형 글로 검색 유입을 만들고, 체류시간이 긴 생성기 도구와
+              디지털 파일 판매 페이지로 연결하는 방식이 가장 현실적입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="posts">
+      <div class="section-head">
+        <div>
+          <h2>최근 콘텐츠</h2>
+          <p>건축 실무와 디자인 감각을 함께 담은 글 구조입니다.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="post-card">
+          <span class="tag">Facade</span>
+          <h3>아파트 외관 디자인 트렌드</h3>
+          <p>최근 공동주택 외관에서 자주 보이는 재료 조합과 입면 흐름을 정리합니다.</p>
+          <a class="post-link" href="post1.html">자세히 보기</a>
+        </article>
+
+        <article class="post-card">
+          <span class="tag">Concept</span>
+          <h3>파사드 디자인 아이디어 5가지</h3>
+          <p>화이트 스톤, 유리, 금속 패널을 활용한 고급스러운 조합을 소개합니다.</p>
+          <a class="post-link" href="post2.html">자세히 보기</a>
+        </article>
+
+        <article class="post-card">
+          <span class="tag">Practice</span>
+          <h3>실시설계 체크포인트</h3>
+          <p>디자인 감각만으로 끝나지 않도록 시공성과 디테일까지 함께 봅니다.</p>
+          <a class="post-link" href="post3.html">자세히 보기</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="feature-box">
+        <div class="section-card">
+          <h3>사이트를 고급스럽게 보이게 하는 핵심</h3>
+          <p>
+            정보가 적어도 정리된 레이아웃, 일관된 타이포, 넉넉한 여백,
+            부드러운 색 조합이 있으면 전체 인상이 확 달라집니다.
+          </p>
+        </div>
+        <div class="ad-card">
+          <strong>광고 영역 예시</strong>
+          AdSense 승인 후 이 위치에 반응형 광고를 넣으면  
+          레이아웃을 해치지 않고 자연스럽게 운영할 수 있습니다.
+        </div>
+      </div>
+    </section>
+
+    <section id="tool">
+      <div class="section-head">
+        <div>
+          <h2>건축 디자인 아이디어 생성기</h2>
+          <p>체류시간을 늘리고 재방문을 유도하기 좋은 페이지입니다.</p>
+        </div>
+      </div>
+
+      <div class="tool-card large">
+        <span class="tag">Interactive Tool</span>
+        <h3>한 번 클릭할 때마다 새로운 디자인 아이디어를 제안합니다</h3>
+        <p>
+          단순하지만 사용자가 여러 번 눌러보게 되는 구조라서,
+          사이트 체류시간과 페이지 활용도를 높이는 데 유리합니다.
+        </p>
+
+        <div class="tool-actions">
+          <button class="btn btn-primary" onclick="generateIdea()">아이디어 생성</button>
+          <button class="btn btn-secondary" onclick="copyIdea()">문구 복사</button>
+        </div>
+
+        <div class="generator-box" id="result">
+          버튼을 눌러 건축 디자인 아이디어를 확인해보세요.
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head">
+        <div>
+          <h2>소개</h2>
+          <p>신뢰감 있는 정보형 사이트로 보이게 하는 중요한 영역입니다.</p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="section-card">
+          <h3>운영자 소개</h3>
+          <p>
+            안녕하세요. 공동주택 설계와 디자인에 관심을 두고 실무 경험을
+            쌓아가며, 공간과 외관의 완성도를 높이는 아이디어를 기록하고 있습니다.
+            이 사이트는 실제로 도움이 되는 건축 정보와 정리된 영감을 공유하기 위한 공간입니다.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <h3>사이트 목적</h3>
+          <p>
+            단순 이미지 모음이 아니라, 디자인 아이디어와 실무적 판단 기준을
+            함께 담는 아카이브를 지향합니다. 이후에는 PDF 자료, 템플릿,
+            프롬프트 자료로도 확장할 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <h2>연락</h2>
+          <p>문의 가능한 구조가 있으면 사이트 신뢰도가 더 좋아집니다.</p>
+        </div>
+      </div>
+
+      <div class="contact-box">
+        <div class="section-card">
+          <h3>문의 안내</h3>
+          <p>
+            협업, 자료 문의, 콘텐츠 제안이 있다면 아래 메일로 연락해주세요.
+          </p>
+          <div class="info-list">
+            <div class="info-item">Email : your@email.com</div>
+            <div class="info-item">Instagram : @youraccount</div>
+            <div class="info-item">Portfolio : 추후 연결 가능</div>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <strong>추가 수익화 영역</strong>
+          여기에는 “건축 디자인 아이디어 50선 PDF” 같은  
+          디지털 상품 연결 버튼을 넣어도 자연스럽습니다.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-box">
+        <div>© 2026 Yunjung Design Note</div>
+        <div>
+          <a href="about.html">About</a> ·
+          <a href="contact.html">Contact</a> ·
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const ideas = [
+      "화이트 스톤과 커튼월 비율을 조절한 프리미엄 입면 구성",
+      "곡선형 발코니와 수직 루버를 조합한 부드러운 외관 디자인",
+      "중정형 커뮤니티 중심의 개방감 있는 아파트 배치 아이디어",
+      "야간 조명을 강조한 랜드마크형 주상복합 입면 컨셉",
+      "테라스형 스텝 매스를 활용한 입체적 공동주택 디자인",
+      "브론즈 메탈 패널과 유리를 섞은 고급 주거 타워 아이디어",
+      "수직 녹화와 밝은 석재 톤을 결합한 친환경 파사드 제안",
+      "발코니 깊이 변화를 이용한 리듬감 있는 외관 디자인",
+      "저층부 커뮤니티와 상부 주거부를 분리해 강조하는 입면 전략",
+      "곡선 포디움과 슬림 타워를 결합한 미래형 복합주거 컨셉"
+    ];
+
+    function generateIdea() {
+      const random = ideas[Math.floor(Math.random() * ideas.length)];
+      document.getElementById("result").innerText = random;
+    }
+
+    function copyIdea() {
+      const text = document.getElementById("result").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("아이디어 문구가 복사되었습니다.");
+      });
+    }
+  </script>
+</body>
+</html>
